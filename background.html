@@ -1,0 +1,36 @@
+<html><head>
+<script type="text/javascript" src="http://www.google.com/jsapi">
+</script>
+<script type="text/javascript">
+  google.load("language", "1");
+</script>
+<script>
+
+window.speak = "";
+
+var play = function(text) {
+  google.language.detect(text, function(result) {
+    if (!result.error) {
+      document.body.innerHTML = '<audio src="http://translate.google.pl/translate_tts?q=' + encodeURIComponent(text) + '&tl='+ result.language +'" autoplay="autoplay"></audio>';
+    }
+  });
+  
+}
+
+function initialize() {
+  var text = document.getElementById("text").innerHTML;
+
+}
+    
+chrome.extension.onRequest.addListener(function(request) { 
+  window.speak = request;
+  window.setTimeout(function() {
+    if(window.speak) {
+      var tmp = window.speak;
+      window.speak = "";
+      play(tmp);
+    }
+  }, 500);
+}); 
+
+</script></head><body></body></html>

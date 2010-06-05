@@ -1,0 +1,19 @@
+{
+  "background_page": "background.html",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "js": ["content_script.js"]
+    }
+  ],
+  "description": "Reads selected text using Google TTS (Text-to-Speech) with language auto-detection.",
+  "icons": {
+    "128": "speaker.png"
+  },
+  "name": "Read me please!",
+  "options_page": "options.html",
+  "permissions": [
+    "tabs", "http://*/*"
+   ],
+  "version": "2.0"
+}
